@@ -1,0 +1,26 @@
+name: publish
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version being published (e.g. 1.0.0)"
+        requred: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/SpangleLabs/dns-health-exporter:latest
+            ghcr.io/SpangleLabs/dns-health-exporter:v${{ github.events.inputs.version }}
