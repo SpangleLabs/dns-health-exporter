@@ -1,4 +1,4 @@
-FROM python:3.9-alpine
+FROM python:3.8-alpine
 MAINTAINER Joshua Coales <joshua@coales.co.uk>
 
 RUN adduser -D dns_check
