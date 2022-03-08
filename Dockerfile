@@ -1,8 +1,5 @@
-FROM python:3.10.2-alpine3.15
+FROM python:3.9-alpine
 MAINTAINER Joshua Coales <joshua@coales.co.uk>
-
-# Poetry needs this
-RUN apk add gcc
 
 RUN adduser -D dns_check
 USER dns_check
