@@ -22,5 +22,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/SpangleLabs/dns-health-exporter:latest
-            ghcr.io/SpangleLabs/dns-health-exporter:v${{ github.events.inputs.version }}
+            ghcr.io/spanglelabs/dns-health-exporter:latest
+            ghcr.io/spanglelabs/dns-health-exporter:v${{ github.events.inputs.version }}
