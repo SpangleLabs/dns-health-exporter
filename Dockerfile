@@ -1,8 +1,14 @@
 FROM python:3.10.2-alpine3.15
 MAINTAINER Joshua Coales <joshua@coales.co.uk>
 
+# Poetry needs this
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
+     && pip install cython \
+     && apk del .build-deps gcc musl-dev
+
 RUN adduser -D dns_check
 USER dns_check
+
 RUN pip install --upgrade pip
 RUN pip install poetry
 RUN poetry install
