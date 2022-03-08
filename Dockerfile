@@ -2,9 +2,7 @@ FROM python:3.10.2-alpine3.15
 MAINTAINER Joshua Coales <joshua@coales.co.uk>
 
 # Poetry needs this
-RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
-     && pip install cython \
-     && apk del .build-deps gcc musl-dev
+RUN apk add gcc
 
 RUN adduser -D dns_check
 USER dns_check
