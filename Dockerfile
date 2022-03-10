@@ -1,14 +1,11 @@
-FROM python:3.8-alpine
-MAINTAINER Joshua Coales <joshua@coales.co.uk>
+FROM python:3.8
 
-RUN apk add --update curl
 RUN curl -sSL https://install.python-poetry.org | python3 -
-ENV PATH=$PATH:$HOME/.local/bin
-
-RUN poetry install
+ENV PATH="/root/.local/bin:$PATH"
 
 COPY . .
+RUN poetry install
 EXPOSE 8080
 
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["poetry", "run", "python", "main.py"]
 # HEALTHCHECK --timeout=10s CMD wget --no-verbose --tries=1 --spider http://localhost:8080/
