@@ -1,0 +1,8 @@
+---
+version: "3.2"
+services:
+  dns_health:
+    image: "ghcr.io/spanglelabs/dns-health-exporter:latest"
+    command: "spangle.org.uk example.com"
+    ports:
+      - "6872:8080"
