@@ -32,7 +32,7 @@ def time_query(hostname: str) -> ContextManager:
     start = time.perf_counter()
     yield
     end = time.perf_counter()
-    logger.warning("Time taken: %s", end - start)
+    logger.info("Time taken: %s", end - start)
     DNS_QUERY_TIME.labels(host=hostname).observe(end - start)
 
 
