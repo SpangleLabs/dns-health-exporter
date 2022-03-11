@@ -34,7 +34,7 @@ def setup_logging() -> None:
     console_handler.setFormatter(formatter)
     base_logger.addHandler(console_handler)
 
-    # FA search bot log, for diagnosing the bot. Should not contain user information.
+    # debug log, for diagnosing any DNS issues.
     debug_logger = logging.getLogger("dns_health_exporter")
     debug_logger.setLevel(logging.DEBUG)
     file_handler = TimedRotatingFileHandler("logs/dns_health.log", when="midnight")
@@ -43,6 +43,6 @@ def setup_logging() -> None:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s:%(name)s:%(message)s')
+    setup_logging()
     args = parser.parse_args()
     exporter.monitor_hosts(args.hosts, port=args.port, sleep=args.sleep)
